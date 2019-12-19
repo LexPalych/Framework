@@ -1,0 +1,9 @@
+rootProject.name = 'com.github.lexpalych'
+
+include("allure-junit5-extensions")
+include("allure-webdriver")
+include("allure-steps")
+include("allure-rest-assured")
+include("junit5-extensions")
+rootProject.name = 'framework'
+
