@@ -1,0 +1,10 @@
+description = 'Little library to add abstract Allure steps'
+
+dependencies {
+    implementation "io.qameta.allure:allure-junit5:${allureJunitVersion}"
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    implementation "org.springframework.data:spring-data-commons:${springDataVersion}"
+    implementation "org.springframework:spring-context:${springContextVersion}"
+    implementation "org.aspectj:aspectjweaver:${aspectJVersion}"
+}
