@@ -1,7 +1,5 @@
 package com.github.lexpalych.allure.webdriver;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 final class WebDriverFactory {
-    private static final Logger LOGGER = LogManager.getLogger(WebDriverFactory.class);
+//    private static final Logger LOGGER = LogManager.getLogger(WebDriverFactory.class);
     private static final OperationSystem system = OperationSystem.getSystemType();
 
     /**
@@ -30,7 +28,7 @@ final class WebDriverFactory {
      * @return - интанс вебдрайвера с заданными параметрами
      */
     static WebDriver getWebDriver(final String browserName, final int timeToWait, final boolean isHeadless) {
-        LOGGER.info("Инициализация браузера " + browserName);
+//        LOGGER.info("Инициализация браузера " + browserName);
 
         final WebDriver webDriver;
 
@@ -51,7 +49,7 @@ final class WebDriverFactory {
         webDriver.manage().deleteAllCookies();
         webDriver.manage().timeouts().implicitlyWait(timeToWait, TimeUnit.SECONDS);
 
-        LOGGER.info("Инициализирован драйвер " + webDriver.getClass().getSimpleName());
+//        LOGGER.info("Инициализирован драйвер " + webDriver.getClass().getSimpleName());
 
         return webDriver;
     }
@@ -134,7 +132,7 @@ final class WebDriverFactory {
      * @throws InterruptedException
      */
     private static void killDriverAndBrowser(final String browserName) throws IOException, InterruptedException {
-        LOGGER.info("Завершение процессов драйвера и браузера " + browserName);
+//        LOGGER.info("Завершение процессов драйвера и браузера " + browserName);
 
         if (browserName.equalsIgnoreCase("chrome")) {
             Runtime.getRuntime().exec("taskkill /im chromedriver.exe /f").waitFor();
@@ -150,7 +148,7 @@ final class WebDriverFactory {
      * @param driverExecutableName - имя .exe файла драйвера
      */
     private static void prepareDrivers(final String driverExecutableName) {
-        LOGGER.info("Операционная система " + system);
+//        LOGGER.info("Операционная система " + system);
         if (system == OperationSystem.WINDOWS) {
             final var path = getResourcePath("drivers/windows/" + driverExecutableName + ".exe");
             setExecutableProperty(driverExecutableName, path);
