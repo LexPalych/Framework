@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.extension.*;
 
+import static com.github.lexpalych.allure.webdriver.PageObjectFactoryManager.createWebDriverFactory;
+
 public final class WebDriverPageObjectFactoryCallbacks
     implements AfterEachCallback, ParameterResolver, TestExecutionExceptionHandler {
   private static final Logger LOGGER = LogManager.getLogger();
@@ -14,11 +16,18 @@ public final class WebDriverPageObjectFactoryCallbacks
   private final Set<Class<? extends WebDriverPageObject<?>>> pageObjectClassSet;
   private final WebDriverPageObjectFactory pageObjectFactory;
 
-  public WebDriverPageObjectFactoryCallbacks(
-      Set<Class<? extends WebDriverPageObject<?>>> pageObjectClassSet,
-      WebDriverPageObjectFactory pageObjectFactory) {
+//  public WebDriverPageObjectFactoryCallbacks(
+//          Set<Class<? extends WebDriverPageObject<?>>> pageObjectClassSet,
+//          WebDriverPageObjectFactory pageObjectFactory) {
+//
+//    this.pageObjectClassSet = pageObjectClassSet;
+//    this.pageObjectFactory = pageObjectFactory;
+//  }
+
+  public WebDriverPageObjectFactoryCallbacks(Set<Class<? extends WebDriverPageObject<?>>> pageObjectClassSet) {
+
     this.pageObjectClassSet = pageObjectClassSet;
-    this.pageObjectFactory = pageObjectFactory;
+    this.pageObjectFactory = createWebDriverFactory();
   }
 
   @Override
