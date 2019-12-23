@@ -1,2 +1,1 @@
-group 'wolframalpha'
-version '1.0'
+ext.uitests = true

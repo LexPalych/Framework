@@ -20,13 +20,13 @@ subprojects {
 
     test {
         doFirst {
-            if (project.hasProperty('uitest')) {
+            if (project.hasProperty('uitests')) {
                 copy {
                     String desc = 'Копирование исполняемых файлов WebDriver'
                     description desc
                     println desc
 
-                    String driverReference ='/resources/main/drivers'
+                    String driverReference ='\\resources\\main\\drivers'
                     String fromPath = getRootProject()
                                 .findProject(':allure-webdriver')
                                 .getBuildDir()

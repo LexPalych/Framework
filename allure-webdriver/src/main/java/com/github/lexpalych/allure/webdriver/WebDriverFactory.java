@@ -180,7 +180,7 @@ final class WebDriverFactory {
     private static String getResourcePath(final String resourceName) {
 //        final ClassLoader classLoader = WebDriverFactory.class.getClassLoader();
 //        return classLoader.getResource(resourceName).getPath();
-        return System.getProperty("user.dir") + "build/resourses/main/rivers/" + resourceName;
+        return System.getProperty("user.dir") + "/build/resources/main/" + resourceName;
     }
 
     /**
