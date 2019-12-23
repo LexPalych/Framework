@@ -2,6 +2,7 @@ import com.github.lexpalych.allure.webdriver.WebDriverPageObjectFactoryCallbacks
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.typesafe.config.ConfigFactory;
 import objectmodel.WolframAlphaMain;
+import objectmodel.WolframAlphaResult;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -27,7 +28,7 @@ public class WolframAlphaCalculatorUiProvider implements TestTemplateInvocationC
         return Stream.of(
                 new TestTemplateInvocationContextBuilder()
                 .withDisplayName("Проверка калькулятора")
-                .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class)))
+                .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
 
                 .addParameterResolver(String.class, url, "url")
                 .addParameterResolver(String.class, example, "example")
