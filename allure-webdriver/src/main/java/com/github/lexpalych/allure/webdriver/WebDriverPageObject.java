@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import com.github.lexpalych.junit5.allure.steps.StepWrapperSteps;
 import java.util.List;
+
+import com.github.lexpalych.junit5.allure.steps.steprepositories.WebStepRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class WebDriverPageObject<T extends WebDriverPageObject<T>>
-    extends StepWrapperSteps<T> {
+public abstract class WebDriverPageObject<T extends WebDriverPageObject<T>> extends StepWrapperSteps<T> implements WebStepRepository<T> {
   @SuppressWarnings("unused")
   private WebDriverPageObjectFactory pageObjectFactory;
 
@@ -21,6 +22,12 @@ public abstract class WebDriverPageObject<T extends WebDriverPageObject<T>>
   public final <D extends WebDriverPageObject<D>> D seePage(final Class<D> pageClass) {
     assertNotEquals(this.getClass(), pageClass);
     return pageObjectFactory.createPageObject(pageClass);
+  }
+
+  @Override
+  public T openUrl(final String url) {
+    driver.get(url);
+    return (T) this;
   }
 
   protected void sendKeys(final String xpath, final CharSequence... value) {
