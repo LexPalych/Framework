@@ -20,6 +20,12 @@ subprojects {
         compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
     }
 
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+
+        options.compilerArgs = ['-parameters']
+    }
+
     test {
         doFirst {
             if (project.hasProperty('uitests')) {
