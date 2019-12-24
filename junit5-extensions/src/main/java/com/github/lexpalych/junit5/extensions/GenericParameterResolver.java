@@ -1,10 +1,11 @@
 package com.github.lexpalych.junit5.extensions;
 
-import java.util.Objects;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
+
+import java.util.Objects;
 
 public final class GenericParameterResolver<T> implements ParameterResolver {
   private final T value;
@@ -24,9 +25,7 @@ public final class GenericParameterResolver<T> implements ParameterResolver {
   }
 
   @Override
-  public boolean supportsParameter(
-      ParameterContext parameterContext, ExtensionContext extensionContext)
-      throws ParameterResolutionException {
+  public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
     if (parameterContext.getParameter().getType() == parameterType) {
       if (name != null) {
         return parameterContext.getParameter().getName().equals(name);
@@ -39,9 +38,7 @@ public final class GenericParameterResolver<T> implements ParameterResolver {
   }
 
   @Override
-  public Object resolveParameter(
-      ParameterContext parameterContext, ExtensionContext extensionContext)
-      throws ParameterResolutionException {
+  public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
     return value;
   }
 

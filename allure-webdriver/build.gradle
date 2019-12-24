@@ -7,4 +7,6 @@ dependencies {
     implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
     implementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
     implementation project(":allure-steps")
+
+    compile "com.typesafe:config:1.3.4"
 }

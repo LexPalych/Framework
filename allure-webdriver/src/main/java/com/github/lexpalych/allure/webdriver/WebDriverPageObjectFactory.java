@@ -12,7 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-final class WebDriverPageObjectFactory {
+public final class WebDriverPageObjectFactory {
   private static final Logger LOGGER = LogManager.getLogger(WebDriverPageObjectFactory.class);
 
   private int COUNTER;
