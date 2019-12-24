@@ -1,4 +1,4 @@
-package objectmodel;
+package wolframalpha.objectmodel;
 
 import com.github.lexpalych.allure.webdriver.WebDriverPageObject;
 import com.github.lexpalych.junit5.allure.steps.steprepositories.ButtonStepRepository;

@@ -1,11 +1,12 @@
-import objectmodel.WolframAlphaMain;
-import objectmodel.WolframAlphaResult;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
+import wolframalpha.WolframAlphaSimpleExampleProvider;
+import wolframalpha.objectmodel.WolframAlphaMain;
+import wolframalpha.objectmodel.WolframAlphaResult;
 
 class WolframAlphaUi {
     @TestTemplate
-    @ExtendWith(WolframAlphaCalculatorUiProvider.class)
+    @ExtendWith(WolframAlphaSimpleExampleProvider.class)
     void checkCalculator(final WolframAlphaMain wolframAlphaMain, final String url, final String example, final String result) {
         wolframAlphaMain
                 .openUrl(url)
@@ -13,7 +14,8 @@ class WolframAlphaUi {
                 .clickButton("Compute")
 
                 .seePage(WolframAlphaResult.class)
-                .checkFieldContainsValue("Result", result);
+//                .checkFieldContainsValue("Result", result);
+                .checkFieldContainsValue("Exact result", result);
 
     }
 }
