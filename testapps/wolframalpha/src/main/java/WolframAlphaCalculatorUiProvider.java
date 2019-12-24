@@ -1,5 +1,6 @@
 import com.github.lexpalych.allure.webdriver.WebDriverPageObjectFactoryCallbacks;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
+import com.github.lexpalych.junit5.extensions.allure.*;
 import com.typesafe.config.ConfigFactory;
 import objectmodel.WolframAlphaMain;
 import objectmodel.WolframAlphaResult;
@@ -27,12 +28,17 @@ public class WolframAlphaCalculatorUiProvider implements TestTemplateInvocationC
 
         return Stream.of(
                 new TestTemplateInvocationContextBuilder()
-                .withDisplayName("Проверка калькулятора")
-                .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
+                        .withDisplayName("Проверка калькулятора")
+                        .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
 
-                .addParameterResolver(String.class, url, "url")
-                .addParameterResolver(String.class, example, "example")
-                .addParameterResolver(String.class, value, "result")
+                        .addParameterResolver(String.class, url, "url")
+                        .addParameterResolver(String.class, example, "example")
+                        .addParameterResolver(String.class, value, "result")
+
+                        .addExtension(0, new AllureFishTaggingExtension())
+                        .addExtension(new AllureHideParametersExtension())
+                        .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
+                        .addExtension(new AllureEncodeStepNamesExtension())
 
                 .build()
         );
