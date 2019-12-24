@@ -15,7 +15,7 @@ class WolframAlphaUi {
 
                 .seePage(WolframAlphaResult.class)
 //                .checkFieldContainsValue("Result", result);
-                .checkFieldContainsValue("Exact result", result);
+                .checkFieldContainsValue("Result", result);
 
     }
 }
