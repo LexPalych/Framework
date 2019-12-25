@@ -2,14 +2,13 @@ package wolframalpha;
 
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
-import org.apache.commons.math3.util.Precision;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 
 import java.util.stream.Stream;
 
-import static wolframalpha.WolframAlphaApiBuilderFunctions.PREPARE;
+import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE_API;
 import static wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
 public class WolframAlphaApiSimpleExampleProvider implements TestTemplateInvocationContextProvider {
@@ -25,7 +24,7 @@ public class WolframAlphaApiSimpleExampleProvider implements TestTemplateInvocat
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
         return new SimpleExample()
                 .getBuilders()
-                .map(PREPARE);
+                .map(PREPARE_API);
 
     }
 
@@ -74,8 +73,6 @@ public class WolframAlphaApiSimpleExampleProvider implements TestTemplateInvocat
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {
             String result = calculate(example).toString();
             String displayName = example + " = " + result;
-
-//            var qqq = Precision.round(calculate(example), 10);
 
             return new TestTemplateInvocationContextBuilder()
                     .withDisplayName(displayName)

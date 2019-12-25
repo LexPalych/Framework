@@ -8,30 +8,30 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 
 import java.util.stream.Stream;
 
-import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE_UI;
+import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE_API;
 import static wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
-public class WolframAlphaFunctionExampleProvider implements TestTemplateInvocationContextProvider {
+public class WolframAlphaApiFunctionExampleProvider implements TestTemplateInvocationContextProvider {
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         String testClassName = context.getTestClass().orElseThrow().getSimpleName();
         String testMethodName = context.getTestMethod().orElseThrow().getName();
 
-        return testClassName.equals("WolframAlphaUi") && testMethodName.equals("checkCalculator");
+        return testClassName.equals("WolframAlphaApi") && testMethodName.equals("checkCalculatorFunction");
     }
 
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
         return new SimpleExample()
                 .getBuilders()
-                .map(PREPARE_UI);
+                .map(PREPARE_API);
 
     }
 
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    sin()/*,
+                    sin(),
                     cos(),
                     tan(),
                     asin(),
@@ -43,7 +43,7 @@ public class WolframAlphaFunctionExampleProvider implements TestTemplateInvocati
                     ln(),
                     exp(),
                     abs(),
-                    sqrt()*/
+                    sqrt()
             );
         }
 

@@ -17,7 +17,7 @@ import java.util.function.Function;
 class WolframAlphaBuilderFunctions {
     private static final Config CONFIG = ConfigFactory.load();
 
-    static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE =
+    static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE_UI =
             builder -> builder
                     .withDisplayNamePrefix("Проверка примера")
                     .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
@@ -28,4 +28,15 @@ class WolframAlphaBuilderFunctions {
 //                    .addExtension(new AllureEncodeStepNamesExtension())
 //                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
             .build();
+
+    static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE_API =
+            builder -> builder
+                    .withDisplayNamePrefix("Проверка примера через API")
+                    .addParameterResolver(String.class, CONFIG.getString("wolframalpha.api.url"), "url")
+
+                    .addExtension(0, new AllureFishTaggingExtension())
+//                    .addExtension(new AllureHideParametersExtension())
+//                    .addExtension(new AllureEncodeStepNamesExtension())
+//                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
+                    .build();
 }

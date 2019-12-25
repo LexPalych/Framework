@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 
 import java.util.stream.Stream;
 
-import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE;
+import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE_UI;
 import static wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
 public class WolframAlphaBracketExampleProvider implements TestTemplateInvocationContextProvider {
@@ -24,7 +24,7 @@ public class WolframAlphaBracketExampleProvider implements TestTemplateInvocatio
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
         return new SimpleExample()
                 .getBuilders()
-                .map(PREPARE);
+                .map(PREPARE_UI);
 
     }
 
