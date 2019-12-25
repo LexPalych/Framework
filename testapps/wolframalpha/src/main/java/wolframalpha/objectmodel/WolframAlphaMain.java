@@ -4,7 +4,8 @@ import com.github.lexpalych.allure.webdriver.WebDriverPageObject;
 import com.github.lexpalych.junit5.allure.steps.steprepositories.ButtonStepRepository;
 import com.github.lexpalych.junit5.allure.steps.steprepositories.FieldStepRepository;
 
-public class WolframAlphaMain extends WebDriverPageObject<WolframAlphaMain> implements FieldStepRepository, ButtonStepRepository {
+public class WolframAlphaMain extends WebDriverPageObject<WolframAlphaMain>
+        implements FieldStepRepository<WolframAlphaMain>, ButtonStepRepository<WolframAlphaMain> {
     private static final String CONTEXT = "//input[@placeholder='Enter what you want to calculate or know about']/../../../../../..";
 
     @Override

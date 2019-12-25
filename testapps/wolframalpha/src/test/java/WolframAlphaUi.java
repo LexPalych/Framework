@@ -14,7 +14,6 @@ class WolframAlphaUi {
                 .clickButton("Compute")
 
                 .seePage(WolframAlphaResult.class)
-//                .checkFieldContainsValue("Result", result);
                 .checkFieldContainsValue("Result", result);
 
     }
