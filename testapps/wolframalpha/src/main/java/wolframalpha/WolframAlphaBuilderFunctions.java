@@ -20,13 +20,12 @@ class WolframAlphaBuilderFunctions {
     static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE =
             builder -> builder
                     .withDisplayNamePrefix("Проверка примера")
-                    .withDisplayNamePostfix("")
                     .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
                     .addParameterResolver(String.class, CONFIG.getString("wolframalpha.url"), "url")
 
                     .addExtension(0, new AllureFishTaggingExtension())
                     .addExtension(new AllureHideParametersExtension())
-                    .addExtension(new AllureEncodeStepNamesExtension())
+//                    .addExtension(new AllureEncodeStepNamesExtension())
 //                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
             .build();
 }
