@@ -1,6 +1,8 @@
 package com.github.lexpalych.allure.rest.assured;
 
 import static com.github.lexpalych.allure.rest.assured.ApiRequestSteps.apiRequest;
+import static java.lang.Double.parseDouble;
+import static java.lang.Math.abs;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +37,23 @@ public final class ApiValidationSteps extends StepWrapperSteps<ApiValidationStep
   public <T> ApiValidationSteps assertEqualsJson(String jsonPath, T expected) {
     T actual = response.getBody().jsonPath().get(jsonPath);
     assertEquals(expected, actual);
+    return this;
+  }
+
+  @Step("Проверка совпадения в {jsonPath} числового значения {expected}")
+  public <T> ApiValidationSteps assertEqualsJsonNumber(String jsonPath, T expected) {
+    T actual = response.getBody().jsonPath().get(jsonPath);
+    assertEquals(parseDouble((String) expected), parseDouble((String) actual));
+    return this;
+  }
+
+  @Step("Проверка совпадения в {jsonPath} числового значения {expected} с точностью {inaccuracy}")
+  public <T> ApiValidationSteps assertEqualsJsonNumber(String jsonPath, T expected, Double inaccuracy) {
+    T actual = response.getBody().jsonPath().get(jsonPath);
+    Double actualValue = parseDouble((String) actual);
+    Double expectedValue = parseDouble((String) expected);
+
+    assertTrue(abs(actualValue - expectedValue) < inaccuracy);
     return this;
   }
 

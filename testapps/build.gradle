@@ -19,6 +19,8 @@ subprojects {
 
         compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
         compile "io.qameta.allure:allure-junit5:${allureJunitVersion}"
+
+        compile 'org.apache.commons:commons-math3:3.5'
     }
 
     tasks.withType(JavaCompile) {
