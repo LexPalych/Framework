@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import static wolframalpha.WolframAlphaBuilderFunctions.PREPARE;
 import static wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
-public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocationContextProvider {
+public class WolframAlphaBracketExampleProvider implements TestTemplateInvocationContextProvider {
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         String testClassName = context.getTestClass().orElseThrow().getSimpleName();
@@ -31,42 +31,42 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    addition(),
-                    subtraction(),
-                    multiplication(),
-                    division(),
-                    exponentiation(),
-                    factorial()
+                    additionInBracket(),
+                    subtractionInBracket(),
+                    multiplicationInBracket(),
+                    divisionInBracket(),
+                    exponentiationInBracket(),
+                    factorialInBracket()
             );
         }
 
-        private TestTemplateInvocationContextBuilder addition() {
-            String example = "1+2";
+        private TestTemplateInvocationContextBuilder additionInBracket() {
+            String example = "(1+2)";
             return getBuilder(example);
         }
 
-        private TestTemplateInvocationContextBuilder subtraction() {
-            String example = "5-2";
+        private TestTemplateInvocationContextBuilder subtractionInBracket() {
+            String example = "(5-2)";
             return getBuilder(example);
         }
 
-        private TestTemplateInvocationContextBuilder multiplication() {
-            String example = "5*2";
+        private TestTemplateInvocationContextBuilder multiplicationInBracket() {
+            String example = "(5*2)";
             return getBuilder(example);
         }
 
-        private TestTemplateInvocationContextBuilder division() {
-            String example = "12/3";
+        private TestTemplateInvocationContextBuilder divisionInBracket() {
+            String example = "(12/3)";
             return getBuilder(example);
         }
 
-        private TestTemplateInvocationContextBuilder exponentiation() {
-            String example = "12/3";
+        private TestTemplateInvocationContextBuilder exponentiationInBracket() {
+            String example = "(12/3)";
             return getBuilder(example);
         }
 
-        private TestTemplateInvocationContextBuilder factorial() {
-            String example = "5!";
+        private TestTemplateInvocationContextBuilder factorialInBracket() {
+            String example = "(5)!";
             return getBuilder(example);
         }
 
@@ -80,7 +80,7 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
                     .addParameterResolver(String.class, example, "example")
                     .addParameterResolver(String.class, result, "result")
 
-                    .addExtension(new AllureLabelExtension("suite", "Простые примеры"));
+                    .addExtension(new AllureLabelExtension("suite", "Простые примеры со скобочками"));
         }
     }
 }
