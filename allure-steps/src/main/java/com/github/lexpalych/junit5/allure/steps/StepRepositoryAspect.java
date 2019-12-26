@@ -53,12 +53,12 @@ public final class StepRepositoryAspect {
   }
 
   private Object findAndProcessMethod(
-      ProceedingJoinPoint joinPoint,
-      MethodSignature methodSignature,
-      Set<Class<?>> stepRepositoryInterfaces)
-      throws Throwable {
-    Method foundMethod =
-        searchForMethodInImplementedStepRepositories(stepRepositoryInterfaces, methodSignature);
+                                      ProceedingJoinPoint joinPoint,
+                                      MethodSignature methodSignature,
+                                      Set<Class<?>> stepRepositoryInterfaces
+                                    ) throws Throwable {
+
+    Method foundMethod = searchForMethodInImplementedStepRepositories(stepRepositoryInterfaces, methodSignature);
 
     if (foundMethod != null) {
       startStep(joinPoint, methodSignature, foundMethod);
@@ -106,8 +106,7 @@ public final class StepRepositoryAspect {
     return joinPoint.proceed(joinPoint.getArgs());
   }
 
-  private Method searchForMethodInImplementedStepRepositories(
-      Set<Class<?>> stepRepositoryInterfaces, MethodSignature signature) {
+  private Method searchForMethodInImplementedStepRepositories(Set<Class<?>> stepRepositoryInterfaces, MethodSignature signature) {
     return stepRepositoryInterfaces.stream()
         .flatMap(type -> Stream.of(type.getDeclaredMethods()))
         .filter(Method::isDefault)

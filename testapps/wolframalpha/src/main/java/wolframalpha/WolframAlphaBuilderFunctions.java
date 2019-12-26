@@ -2,6 +2,7 @@ package wolframalpha;
 
 import com.github.lexpalych.allure.webdriver.WebDriverPageObjectFactoryCallbacks;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
+import com.github.lexpalych.junit5.extensions.allure.AllureConcurrentLoggerAttachmentsExtension;
 import com.github.lexpalych.junit5.extensions.allure.AllureEncodeStepNamesExtension;
 import com.github.lexpalych.junit5.extensions.allure.AllureFishTaggingExtension;
 import com.github.lexpalych.junit5.extensions.allure.AllureHideParametersExtension;
@@ -25,8 +26,8 @@ class WolframAlphaBuilderFunctions {
 
                     .addExtension(0, new AllureFishTaggingExtension())
                     .addExtension(new AllureHideParametersExtension())
-//                    .addExtension(new AllureEncodeStepNamesExtension())
-//                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
+                    .addExtension(new AllureEncodeStepNamesExtension())
+                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
             .build();
 
     static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE_API =
@@ -35,8 +36,8 @@ class WolframAlphaBuilderFunctions {
                     .addParameterResolver(String.class, CONFIG.getString("wolframalpha.api.url"), "url")
 
                     .addExtension(0, new AllureFishTaggingExtension())
-//                    .addExtension(new AllureHideParametersExtension())
-//                    .addExtension(new AllureEncodeStepNamesExtension())
-//                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
+                    .addExtension(new AllureHideParametersExtension())
+                    .addExtension(new AllureEncodeStepNamesExtension())
+                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
                     .build();
 }

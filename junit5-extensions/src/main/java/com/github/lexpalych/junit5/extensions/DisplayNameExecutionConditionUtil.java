@@ -9,6 +9,7 @@ final class DisplayNameExecutionConditionUtil {
 
     if (displayNames != null) {
       return Arrays.asList(displayNames.split(","));
+
     } else {
       return List.of();
     }
