@@ -19,7 +19,7 @@ subprojects {
 
         compile 'org.seleniumhq.selenium:selenium-java:3.141.59'
         compile "io.qameta.allure:allure-junit5:${allureJunitVersion}"
-        
+
     }
 
     tasks.withType(JavaCompile) {
@@ -54,5 +54,9 @@ subprojects {
                 }
             }
         }
+
+        println 'Устанока проперти конфигурации логирования'
+        systemProperties["log4j2.configurationFactory"] = "com.github.lexpalych.allure-junit5-extensions.LoggerStreamProvider"
+        systemProperties["log4j2.rootLogger.level"] = "into"
     }
 }
