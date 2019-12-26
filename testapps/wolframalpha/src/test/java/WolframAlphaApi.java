@@ -9,11 +9,12 @@ import static com.github.lexpalych.allure.rest.assured.ApiRequestSteps.apiReques
 class WolframAlphaApi {
     @TestTemplate
     @ExtendWith({
-            WolframAlphaApiSimpleExampleProvider.class,
-            WolframAlphaApiBracketExampleProvider.class
+            WolframAlphaApiSimpleExampleProvider.class/*,
+            WolframAlphaApiBracketExampleProvider.class*/
     })
     void checkCalculator(final String url, final String example, final String result) {
         apiRequest()
+                .addHeader("encoding", "UTF-8")
                 .get(url + example)
                 .statusCode(200)
                 .assertEqualsJsonNumber("instantMath.exactResult", result);

@@ -7,4 +7,11 @@ dependencies {
     implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
     implementation "io.rest-assured:json-path:${restAssuredVersion}"
     implementation "io.rest-assured:xml-path:${restAssuredVersion}"
+
+    implementation project(":allure-junit5-extensions")
+}
+
+//Ну для корректного отображения названия шагов
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }

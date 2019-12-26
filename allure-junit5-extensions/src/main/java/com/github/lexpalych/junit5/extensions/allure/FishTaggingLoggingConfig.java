@@ -26,7 +26,7 @@ public class FishTaggingLoggingConfig extends ConfigurationFactory {
         LayoutComponentBuilder layout = builder
                 .newLayout("PatternLayout")
                 .addAttribute("pattern", "[%X{id}] %m%n")
-                .addAttribute("charset", "UFT-8");
+                .addAttribute("charset", "UTF-8");
 
         AppenderComponentBuilder fileAppender = builder
                 .newAppender("fileAppender", "File")
@@ -46,6 +46,10 @@ public class FishTaggingLoggingConfig extends ConfigurationFactory {
                 .newLogger("com.github.lexpalych.allure-steps.StepWrapper")
                 .add(builder.newAppenderRef("fileAppender"));
 
+        LoggerComponentBuilder api = builder
+                .newLogger("com.github.lexpalych.allure-rest-assured")
+                .add(builder.newAppenderRef("fileAppender"));
+
         LoggerComponentBuilder springJbc = builder
                 .newLogger("org.springframework.jdbc")
                 .add(builder.newAppenderRef("fileAppender"));
@@ -59,6 +63,7 @@ public class FishTaggingLoggingConfig extends ConfigurationFactory {
                 .add(rootLogger)
                 .add(restAssured)
                 .add(stepWrapper)
+                .add(api)
                 .add(springJbc)
                 .add(wolframalpha)
                 .build();

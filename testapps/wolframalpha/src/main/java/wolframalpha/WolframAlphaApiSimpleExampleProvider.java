@@ -31,12 +31,12 @@ public class WolframAlphaApiSimpleExampleProvider implements TestTemplateInvocat
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    addition(),
+                    addition()/*,
                     subtraction(),
                     multiplication(),
                     division(),
                     exponentiation(),
-                    factorial()
+                    factorial()*/
             );
         }
 

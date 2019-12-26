@@ -1,15 +1,21 @@
 package com.github.lexpalych.allure.rest.assured;
 
+import static com.github.lexpalych.junit5.extensions.allure.LoggerStreamProvider.getLoggerPrintStream;
 import static io.restassured.RestAssured.given;
 
 import com.github.lexpalych.junit5.allure.steps.StepWrapperSteps;
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+
 import java.util.List;
 import java.util.Map;
 
 public final class ApiRequestSteps extends StepWrapperSteps<ApiRequestSteps> {
-  private RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+  private RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
+          .addFilter(RequestLoggingFilter.logRequestTo(getLoggerPrintStream()))
+          .addFilter(ResponseLoggingFilter.logResponseTo(getLoggerPrintStream()));
 
   private ApiRequestSteps() {}
 
