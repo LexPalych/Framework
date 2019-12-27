@@ -39,15 +39,19 @@ public class FishTaggingLoggingConfig extends ConfigurationFactory {
                 .newRootLogger(Level.ALL);
 
         LoggerComponentBuilder restAssured = builder
-                .newLogger("com.github.lexpalych.allure-junit5-extensions.LoggerStreamProvider")
+                .newLogger("com.github.lexpalych.junit5.extensions.allure.LoggerStreamProvider")
                 .add(builder.newAppenderRef("fileAppender"));
 
         LoggerComponentBuilder stepWrapper = builder
-                .newLogger("com.github.lexpalych.allure-steps.StepWrapper")
+                .newLogger("com.github.lexpalych.junit5.allure.steps")
                 .add(builder.newAppenderRef("fileAppender"));
 
         LoggerComponentBuilder api = builder
-                .newLogger("com.github.lexpalych.allure-rest-assured")
+                .newLogger("com.github.lexpalych.allure.rest.assured")
+                .add(builder.newAppenderRef("fileAppender"));
+
+        LoggerComponentBuilder webDriver = builder
+                .newLogger("com.github.lexpalych.allure.webdriver")
                 .add(builder.newAppenderRef("fileAppender"));
 
         LoggerComponentBuilder springJbc = builder
@@ -64,6 +68,7 @@ public class FishTaggingLoggingConfig extends ConfigurationFactory {
                 .add(restAssured)
                 .add(stepWrapper)
                 .add(api)
+                .add(webDriver)
                 .add(springJbc)
                 .add(wolframalpha)
                 .build();

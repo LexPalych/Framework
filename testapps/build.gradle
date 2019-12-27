@@ -22,6 +22,9 @@ subprojects {
 
         compile "io.rest-assured:rest-assured:${restAssuredVersion}"
 
+        implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+        implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+
     }
 
     tasks.withType(JavaCompile) {
@@ -60,7 +63,7 @@ subprojects {
         }
 
         println 'Устанока проперти конфигурации логирования'
-        systemProperties["log4j2.configurationFactory"] = "com.github.lexpalych.allure-junit5-extensions.FishTaggingLoggingConfig"
-        systemProperties["log4j2.rootLogger.level"] = "into"
+        systemProperties["log4j2.configurationFactory"] = "com.github.lexpalych.junit5.extensions.allure.FishTaggingLoggingConfig"
+//        systemProperties["log4j2.rootLogger.level"] = "into"
     }
 }

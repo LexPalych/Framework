@@ -13,9 +13,10 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 public final class AllureConcurrentLoggerAttachmentsExtension implements AfterEachCallback {
-  private final String logPath;
+//  private final String logPath;
 //  private final String regex;
   private final String[] regex;
+  private static final String LOG_PATH = ConfigFactory.load().getString("logging.path");
 
 //  public AllureConcurrentLoggerAttachmentsExtension() {
 //    this.logPath = System.getProperty("concurrentLoggerLogPath");
@@ -24,7 +25,7 @@ public final class AllureConcurrentLoggerAttachmentsExtension implements AfterEa
 
   public AllureConcurrentLoggerAttachmentsExtension(String... regex) {
     this.regex = regex;
-    this.logPath = ConfigFactory.load().getString("logging.path");
+//    this.logPath = ConfigFactory.load().getString("logging.path");
   }
 
 //  public AllureConcurrentLoggerAttachmentsExtension(String logPath, String regex) {
@@ -35,7 +36,7 @@ public final class AllureConcurrentLoggerAttachmentsExtension implements AfterEa
   @Override
   public void afterEach(ExtensionContext context) throws IOException {
     // Группировка логов по айдишнику
-    String groupedLogMessages = getMessagesWithId(lifecycle().getCurrentTestCase().orElseThrow());
+    String groupedLogMessages = getMessagesWithId(Allure.getLifecycle().getCurrentTestCase().orElseThrow());
 
 //    groupedLogMessages = groupedLogMessages.replaceAll(regex, "*****");
 
@@ -43,14 +44,16 @@ public final class AllureConcurrentLoggerAttachmentsExtension implements AfterEa
       groupedLogMessages = groupedLogMessages.replaceAll(regex, "*****");
     }
 
-    lifecycle()
-        .addAttachment("Полный лог", "text/plain", ".txt", groupedLogMessages.getBytes(UTF_8));
+    Allure
+            .getLifecycle()
+            .addAttachment("Полный лог", "text/plain", ".txt", groupedLogMessages.getBytes(UTF_8));
   }
 
   private String getMessagesWithId(String uuid) throws IOException {
     String uuidTemplate = "[" + uuid + "] ";
+
     return Files
-            .readAllLines(Path.of(System.getProperty("user.dir") + logPath), UTF_8).stream()
+            .readAllLines(Path.of(System.getProperty("user.dir") + LOG_PATH), UTF_8).stream()
             //Фильтрация сообщений по id
             .filter(logMessage -> logMessage.contains(uuidTemplate))
             //Удаление id из текстаа сообщений
@@ -69,9 +72,9 @@ public final class AllureConcurrentLoggerAttachmentsExtension implements AfterEa
 //  String getRegex() {
 //    return regex;
 //  }
-
-  /** Only for testing */
-  AllureLifecycle lifecycle() {
-    return Allure.getLifecycle();
-  }
+//
+//  /** Only for testing */
+//  AllureLifecycle lifecycle() {
+//    return Allure.getLifecycle();
+//  }
 }

@@ -1,19 +1,16 @@
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
-import wolframalpha.WolframAlphaBracketExampleProvider;
-import wolframalpha.WolframAlphaFunctionExampleProvider;
-import wolframalpha.WolframAlphaSimpleExampleProvider;
-import wolframalpha.WolframAlphaVeryComplexExampleProvider;
-import wolframalpha.objectmodel.WolframAlphaMain;
-import wolframalpha.objectmodel.WolframAlphaResult;
+import com.github.lexpalych.testapps.wolframalpha.WolframAlphaSimpleExampleProvider;
+import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaMain;
+import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaResult;
 
 class WolframAlphaUi {
     @TestTemplate
     @ExtendWith({
-            WolframAlphaSimpleExampleProvider.class,
+            WolframAlphaSimpleExampleProvider.class/*,
             WolframAlphaBracketExampleProvider.class,
             WolframAlphaFunctionExampleProvider.class,
-            WolframAlphaVeryComplexExampleProvider.class
+            WolframAlphaVeryComplexExampleProvider.class*/
     })
     void checkCalculator(final WolframAlphaMain wolframAlphaMain, final String url, final String example, final String result) {
         wolframAlphaMain

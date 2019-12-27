@@ -18,10 +18,8 @@ public final class WebDriverPageObjectFactory {
   private int COUNTER;
   private final WebDriver webDriver;
   private final WebDriverWait webDriverWait;
-  private final Map<
-          Class<? extends WebDriverPageObject<?>>,
-          WebDriverPageObject<? extends WebDriverPageObject<?>>>
-      pageObjectCache = new HashMap<>();
+  private final Map<Class<? extends WebDriverPageObject<?>>, WebDriverPageObject<? extends WebDriverPageObject<?>>>
+          pageObjectCache = new HashMap<>();
 
   WebDriverPageObjectFactory(final WebDriver webDriver, final WebDriverWait webDriverWait) {
     this.webDriver = webDriver;

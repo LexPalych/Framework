@@ -57,7 +57,11 @@ public final class WebDriverPageObjectFactoryCallbacks
   public void handleTestExecutionException(ExtensionContext context, Throwable throwable)
       throws Throwable {
     LOGGER.debug("Test ended with exception");
-    lifecycle().addAttachment("Screenshot", "image/png", "", pageObjectFactory.makeScreenshot());
+
+    Allure
+            .getLifecycle()
+            .addAttachment("Screenshot", "image/png", "", pageObjectFactory.makeScreenshot());
+
     throw throwable;
   }
 

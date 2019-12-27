@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
-import wolframalpha.WolframAlphaApiBracketExampleProvider;
-import wolframalpha.WolframAlphaApiFunctionExampleProvider;
-import wolframalpha.WolframAlphaApiSimpleExampleProvider;
+import com.github.lexpalych.testapps.wolframalpha.WolframAlphaApiFunctionExampleProvider;
+import com.github.lexpalych.testapps.wolframalpha.WolframAlphaApiSimpleExampleProvider;
 
 import static com.github.lexpalych.allure.rest.assured.ApiRequestSteps.apiRequest;
 
