@@ -1,5 +1,6 @@
 package com.github.lexpalych.testapps.wolframalpha;
 
+import com.github.lexpalych.junit5.allure.steps.StepWrapperSteps;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
 import org.apache.logging.log4j.LogManager;
@@ -13,9 +14,7 @@ import java.util.stream.Stream;
 import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaBuilderFunctions.PREPARE_UI;
 import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
-public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocationContextProvider {
-    private static final Logger LOGGER = LogManager.getLogger();
-
+public class WolframAlphaSimpleExampleProvider extends StepWrapperSteps<WolframAlphaSimpleExampleProvider> implements TestTemplateInvocationContextProvider {
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         String testClassName = context.getTestClass().orElseThrow().getSimpleName();
@@ -35,12 +34,12 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    addition()/*,
+                    addition(),
                     subtraction(),
                     multiplication(),
                     division(),
                     exponentiation(),
-                    factorial()*/
+                    factorial()
             );
         }
 
@@ -75,8 +74,6 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
         }
 
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {
-            LOGGER.debug("Проерка вывода данного сообщения в логи");
-
             String result = calculate(example).toString();
             String displayName = example + " = " + result;
 

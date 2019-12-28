@@ -26,10 +26,10 @@ subprojects {
     allure {
         autoconfigure = true
 
-        version = '2.12.1'
+        version = '2.13.1'
 
         useJUnit5 {
-            version = '2.12.1'
+            version = '2.13.1'
         }
     }
 

@@ -29,7 +29,7 @@ public class WolframAlphaFunctionExampleProvider implements TestTemplateInvocati
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    sin()/*,
+                    sin(),
                     cos(),
                     tan(),
                     asin(),
@@ -41,7 +41,7 @@ public class WolframAlphaFunctionExampleProvider implements TestTemplateInvocati
                     ln(),
                     exp(),
                     abs(),
-                    sqrt()*/
+                    sqrt()
             );
         }
 
