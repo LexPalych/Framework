@@ -8,8 +8,3 @@ dependencies {
     implementation "org.springframework:spring-context:${springContextVersion}"
     implementation "org.aspectj:aspectjweaver:${aspectJVersion}"
 }
-
-////Ну для корректного отображения названия шагов
-//tasks.withType(JavaCompile) {
-//    options.encoding = 'UTF-8'
-//}
