@@ -2,8 +2,6 @@ package com.github.lexpalych.testapps.wolframalpha;
 
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
