@@ -51,8 +51,12 @@ subprojects {
     test {
         useJUnitPlatform()
 
+        //По умолчанию тесты запускаются многопоточно (true)
         systemProperties['junit.jupiter.execution.parallel.enabled'] = true
         systemProperties['junit.jupiter.execution.parallel.mode.default'] = 'concurrent'
+
+        //Количесто потоков равно количесту ядер
+        maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
     }
     
 }
