@@ -14,8 +14,6 @@ import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaBuilderFunc
 import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
 public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocationContextProvider {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         String testClassName = context.getTestClass().orElseThrow().getSimpleName();
@@ -35,12 +33,12 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
             return Stream.of(
-                    addition()/*,
+                    addition(),
                     subtraction(),
                     multiplication(),
                     division(),
                     exponentiation(),
-                    factorial()*/
+                    factorial()
             );
         }
 
@@ -75,8 +73,6 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
         }
 
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {
-            LOGGER.debug("Проерка вывода данного сообщения в логи");
-
             String result = calculate(example).toString();
             String displayName = example + " = " + result;
 

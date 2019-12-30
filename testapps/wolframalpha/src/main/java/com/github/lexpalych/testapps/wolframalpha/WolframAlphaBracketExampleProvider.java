@@ -8,6 +8,8 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import java.util.stream.Stream;
 
+import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaBuilderFunctions.PREPARE_UI;
+
 public class WolframAlphaBracketExampleProvider implements TestTemplateInvocationContextProvider {
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
@@ -21,7 +23,7 @@ public class WolframAlphaBracketExampleProvider implements TestTemplateInvocatio
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
         return new SimpleExample()
                 .getBuilders()
-                .map(WolframAlphaBuilderFunctions.PREPARE_UI);
+                .map(PREPARE_UI);
 
     }
 
