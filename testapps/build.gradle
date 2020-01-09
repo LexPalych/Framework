@@ -35,7 +35,7 @@ subprojects {
 
                     String driverReference ='\\resources\\main\\drivers'
                     String fromPath = getRootProject()
-                                .findProject(':allure-webdriver')
+                                .findProject(":${webDriverModuleName}")
                                 .getBuildDir()
                                 .getAbsolutePath() + driverReference
 
@@ -53,7 +53,7 @@ subprojects {
         }
 
         println 'Устанока проперти конфигурации логирования'
-        systemProperties["log4j2.configurationFactory"] = "com.github.lexpalych.junit5.extensions.allure.FishTaggingLoggingConfig"
+        systemProperties["log4j2.configurationFactory"] = "${configurationFactoryPath}"
         systemProperties["log4j2.rootLogger.level"] = "info"
     }
 }
