@@ -5,6 +5,7 @@ import com.github.lexpalych.testapps.wolframalpha.WolframAlphaApiFunctionExample
 import com.github.lexpalych.testapps.wolframalpha.WolframAlphaApiSimpleExampleProvider;
 
 import static com.github.lexpalych.allure.rest.assured.ApiRequestSteps.apiRequest;
+import static org.apache.http.HttpStatus.SC_OK;
 
 class WolframAlphaApi {
     @TestTemplate
@@ -16,7 +17,7 @@ class WolframAlphaApi {
         apiRequest()
                 .addHeader("encoding", "UTF-8")
                 .get(url + example)
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .assertEqualsJsonNumber("instantMath.exactResult", result);
 
     }
@@ -28,7 +29,7 @@ class WolframAlphaApi {
     void checkCalculatorFunction(final String url, final String example, final String result) {
         apiRequest()
                 .get(url + example)
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .assertEqualsJsonNumber("instantMath.approximateResult", result);
 
     }

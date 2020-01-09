@@ -10,6 +10,7 @@ subprojects {
         implementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
         implementation "io.qameta.allure:allure-junit5:${allureJunitVersion}"
         implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+        implementation "org.apache.httpcomponents:httpclient:${httpclientVersion}"
 
         implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
         implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
