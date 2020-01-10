@@ -3,6 +3,7 @@ package com.github.lexpalych.testapps.wolframalpha;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
 import com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator;
+import com.typesafe.config.ConfigFactory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -30,86 +31,11 @@ public class WolframAlphaFunctionExampleProvider implements TestTemplateInvocati
 
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
-            return Stream.of(
-                    sin(),
-                    cos(),
-                    tan(),
-                    asin(),
-                    acos(),
-                    atan(),
-                    sinh(),
-                    cosh(),
-                    tanh(),
-                    ln(),
-                    exp(),
-                    abs(),
-                    sqrt()
-            );
-        }
-
-        private TestTemplateInvocationContextBuilder sin() {
-            String example = "sin(60)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder cos() {
-            String example = "cos(30)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder tan() {
-            String example = "tan(45)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder asin() {
-            String example = "asin(0.5)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder acos() {
-            String example = "acos(0.5)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder atan() {
-            String example = "atan(1)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder sinh() {
-            String example = "sinh(10)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder cosh() {
-            String example = "cosh(10)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder tanh() {
-            String example = "tanh(10)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder ln() {
-            String example = "ln(10)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder exp() {
-            String example = "exp(10)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder abs() {
-            String example = "abs(-5)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder sqrt() {
-            String example = "sqrt(16)";
-            return getBuilder(example);
+            return ConfigFactory
+                    .load("example.conf")
+                    .getStringList("function")
+                    .stream()
+                    .map(this::getBuilder);
         }
 
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {

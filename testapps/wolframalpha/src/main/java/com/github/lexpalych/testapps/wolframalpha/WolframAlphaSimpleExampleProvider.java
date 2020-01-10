@@ -2,6 +2,7 @@ package com.github.lexpalych.testapps.wolframalpha;
 
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
+import com.typesafe.config.ConfigFactory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -30,44 +31,11 @@ public class WolframAlphaSimpleExampleProvider implements TestTemplateInvocation
 
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
-            return Stream.of(
-                    addition()/*,
-                    subtraction(),
-                    multiplication(),
-                    division(),
-                    exponentiation(),
-                    factorial()*/
-            );
-        }
-
-        private TestTemplateInvocationContextBuilder addition() {
-            String example = "1+2";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder subtraction() {
-            String example = "5-2";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder multiplication() {
-            String example = "5*2";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder division() {
-            String example = "12/3";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder exponentiation() {
-            String example = "12/3";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder factorial() {
-            String example = "5!";
-            return getBuilder(example);
+            return ConfigFactory
+                    .load("example.conf")
+                    .getStringList("simple")
+                    .stream()
+                    .map(this::getBuilder);
         }
 
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {

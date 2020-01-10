@@ -3,6 +3,7 @@ package com.github.lexpalych.testapps.wolframalpha;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
 import com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator;
+import com.typesafe.config.ConfigFactory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import java.util.stream.Stream;
 
 import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaBuilderFunctions.PREPARE_API;
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator.calculate;
 
 public class WolframAlphaApiBracketExampleProvider implements TestTemplateInvocationContextProvider {
     @Override
@@ -22,65 +24,25 @@ public class WolframAlphaApiBracketExampleProvider implements TestTemplateInvoca
 
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-        return new SimpleExample()
-                .getBuilders()
+        return ConfigFactory
+                .load("example.conf")
+                .getStringList("bracket")
+                .stream()
+                .map(this::getTestTemplateInvocationContextBuilder)
                 .map(PREPARE_API);
 
     }
 
-    private final class SimpleExample {
-        private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
-            return Stream.of(
-                    additionInBracket(),
-                    subtractionInBracket(),
-                    multiplicationInBracket(),
-                    divisionInBracket(),
-                    exponentiationInBracket(),
-                    factorialInBracket()
-            );
-        }
+    private TestTemplateInvocationContextBuilder getTestTemplateInvocationContextBuilder(final String example) {
+        String result = calculate(example).toString();
+        String displayName = example + " = " + result;
 
-        private TestTemplateInvocationContextBuilder additionInBracket() {
-            String example = "(1+2)";
-            return getBuilder(example);
-        }
+        return new TestTemplateInvocationContextBuilder()
+                .withDisplayName(displayName)
 
-        private TestTemplateInvocationContextBuilder subtractionInBracket() {
-            String example = "(5-2)";
-            return getBuilder(example);
-        }
+                .addParameterResolver(String.class, example, "example")
+                .addParameterResolver(String.class, result, "result")
 
-        private TestTemplateInvocationContextBuilder multiplicationInBracket() {
-            String example = "(5*2)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder divisionInBracket() {
-            String example = "(12/3)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder exponentiationInBracket() {
-            String example = "(12/3)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder factorialInBracket() {
-            String example = "(5)!";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder getBuilder(final String example) {
-            String result = ExampleCalculator.calculate(example).toString();
-            String displayName = example + " = " + result;
-
-            return new TestTemplateInvocationContextBuilder()
-                    .withDisplayName(displayName)
-
-                    .addParameterResolver(String.class, example, "example")
-                    .addParameterResolver(String.class, result, "result")
-
-                    .addExtension(new AllureLabelExtension("suite", "Простые примеры со скобочками"));
-        }
+                .addExtension(new AllureLabelExtension("suite", "Простые примеры со скобочками"));
     }
 }

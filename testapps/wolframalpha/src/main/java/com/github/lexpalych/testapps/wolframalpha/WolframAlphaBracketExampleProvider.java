@@ -3,6 +3,7 @@ package com.github.lexpalych.testapps.wolframalpha;
 import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
 import com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleCalculator;
+import com.typesafe.config.ConfigFactory;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -29,44 +30,11 @@ public class WolframAlphaBracketExampleProvider implements TestTemplateInvocatio
 
     private final class SimpleExample {
         private Stream<TestTemplateInvocationContextBuilder> getBuilders() {
-            return Stream.of(
-                    additionInBracket(),
-                    subtractionInBracket(),
-                    multiplicationInBracket(),
-                    divisionInBracket(),
-                    exponentiationInBracket(),
-                    factorialInBracket()
-            );
-        }
-
-        private TestTemplateInvocationContextBuilder additionInBracket() {
-            String example = "(1+2)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder subtractionInBracket() {
-            String example = "(5-2)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder multiplicationInBracket() {
-            String example = "(5*2)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder divisionInBracket() {
-            String example = "(12/3)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder exponentiationInBracket() {
-            String example = "(12/3)";
-            return getBuilder(example);
-        }
-
-        private TestTemplateInvocationContextBuilder factorialInBracket() {
-            String example = "(5)!";
-            return getBuilder(example);
+            return ConfigFactory
+                    .load("example.conf")
+                    .getStringList("bracket")
+                    .stream()
+                    .map(this::getBuilder);
         }
 
         private TestTemplateInvocationContextBuilder getBuilder(final String example) {
