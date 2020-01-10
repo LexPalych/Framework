@@ -81,6 +81,7 @@ subprojects {
             }
         }
 
+        //Многопоточный запуск тестов
         test {
             useJUnitPlatform()
 
@@ -92,6 +93,7 @@ subprojects {
             maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
         }
 
+        //Конфиг логирования
         println 'Устанока проперти конфигурации логирования'
         systemProperties["log4j2.configurationFactory"] = "${configurationFactoryPath}"
         systemProperties["log4j2.rootLogger.level"] = "info"
