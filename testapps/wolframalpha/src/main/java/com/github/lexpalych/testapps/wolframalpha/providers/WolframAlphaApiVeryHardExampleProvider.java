@@ -10,7 +10,7 @@ import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaBuilderFunc
 import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaExample.getExampleList;
 import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaExample.getTestTemplateInvocationContextBuilder;
 
-public class WolframAlphaApiVeryComplexExampleProvider implements TestTemplateInvocationContextProvider {
+public class WolframAlphaApiVeryHardExampleProvider implements TestTemplateInvocationContextProvider {
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         String testClassName = context.getTestClass().orElseThrow().getSimpleName();
@@ -21,7 +21,7 @@ public class WolframAlphaApiVeryComplexExampleProvider implements TestTemplateIn
 
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-        return getExampleList("veryComplex")
+        return getExampleList("veryHard")
                 .stream()
                 .map(example -> getTestTemplateInvocationContextBuilder(example, "Очень сложные примеры"))
                 .map(PREPARE_API);

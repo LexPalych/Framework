@@ -10,7 +10,7 @@
 //import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaExample.getExampleList;
 //import static com.github.lexpalych.testapps.wolframalpha.WolframAlphaExample.getTestTemplateInvocationContextBuilder;
 //
-//public class WolframAlphaUiFunctionExampleProvider implements TestTemplateInvocationContextProvider {
+//public class WolframAlphaUiVeryHardExampleProvider implements TestTemplateInvocationContextProvider {
 //    @Override
 //    public boolean supportsTestTemplate(ExtensionContext context) {
 //        String testClassName = context.getTestClass().orElseThrow().getSimpleName();
@@ -21,9 +21,9 @@
 //
 //    @Override
 //    public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-//        return getExampleList("function")
+//        return getExampleList("veryComplex")
 //                .stream()
-//                .map(example -> getTestTemplateInvocationContextBuilder(example, "Простые примеры с функциями"))
+//                .map(example -> getTestTemplateInvocationContextBuilder(example, "Очень сложные примеры"))
 //                .map(PREPARE_UI);
 //
 //    }

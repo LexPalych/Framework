@@ -1,5 +1,5 @@
 import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiBracketExampleProvider;
-import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiVeryComplexExampleProvider;
+import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiVeryHardExampleProvider;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiFunctionExampleProvider;
@@ -26,7 +26,7 @@ class WolframAlphaApi {
     @TestTemplate
     @ExtendWith({
             WolframAlphaApiFunctionExampleProvider.class,
-            WolframAlphaApiVeryComplexExampleProvider.class
+            WolframAlphaApiVeryHardExampleProvider.class
     })
     void checkCalculatorFunction(final String url, final String example, final String result) {
         apiRequest()
