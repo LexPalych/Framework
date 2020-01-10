@@ -4,8 +4,7 @@ import io.qameta.allure.model.Status;
 
 @SuppressWarnings("unchecked")
 public abstract class StepWrapperSteps<T extends StepWrapperSteps<T>> {
-  private static final ThreadLocal<StepWrapper> stepWrapperThreadLocal =
-      ThreadLocal.withInitial(StepWrapper::new);
+  private static final ThreadLocal<StepWrapper> stepWrapperThreadLocal = ThreadLocal.withInitial(StepWrapper::new);
 
   public final T startStep(String stepName) {
     stepWrapper().startStep(stepName);

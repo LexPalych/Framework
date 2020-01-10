@@ -1,0 +1,59 @@
+group 'com.github.lexpalych'
+version '1.0'
+
+subprojects {
+    dependencies {
+        implementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+        implementation "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+        implementation "org.junit.jupiter:junit-jupiter-params:${jupiterVersion}"
+
+        implementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+        implementation "io.qameta.allure:allure-junit5:${allureJunitVersion}"
+        implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+        implementation "org.apache.httpcomponents:httpclient:${httpclientVersion}"
+
+        implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+        implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+
+        implementation project (":allure-junit5-extensions")
+        implementation project (":allure-rest-assured")
+        implementation project (":allure-steps")
+        implementation project (":allure-webdriver")
+        implementation project (":junit5-extensions")
+    }
+
+    //Параметр для javac, чтобы получать реальные имена переменных, а не синтетические arg0, arg1 и т.д.
+    compileTestJava.options.compilerArgs = ['-parameters']
+
+    test {
+        doFirst {
+            if (project.hasProperty('uitests')) {
+                copy {
+                    String desc = 'Копирование исполняемых файлов WebDriver'
+                    description desc
+                    println desc
+
+                    String driverReference ='\\resources\\main\\drivers'
+                    String fromPath = getRootProject()
+                                .findProject(":${webDriverModuleName}")
+                                .getBuildDir()
+                                .getAbsolutePath() + driverReference
+
+                    println "Из ${fromPath}"
+                    from fromPath
+
+                    String intoPath = project
+                            .getBuildDir()
+                            .getAbsolutePath() + driverReference
+
+                    println "В ${intoPath}"
+                    into intoPath
+                }
+            }
+        }
+
+        println 'Устанока проперти конфигурации логирования'
+        systemProperties["log4j2.configurationFactory"] = "${configurationFactoryPath}"
+        systemProperties["log4j2.rootLogger.level"] = "info"
+    }
+}

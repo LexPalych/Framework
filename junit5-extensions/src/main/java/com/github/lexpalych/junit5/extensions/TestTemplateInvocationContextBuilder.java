@@ -1,10 +1,11 @@
 package com.github.lexpalych.junit5.extensions;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TestTemplateInvocationContextBuilder {
   private final List<Extension> extensions = new ArrayList<>();
@@ -27,17 +28,14 @@ public final class TestTemplateInvocationContextBuilder {
     return this;
   }
 
-  public <T> TestTemplateInvocationContextBuilder addParameterResolver(
-      Class<T> parameterType, T value) {
+  public <T> TestTemplateInvocationContextBuilder addParameterResolver(Class<T> parameterType, T value) {
     ParameterResolver resolver = new GenericParameterResolver<>(parameterType, value);
     extensions.add(resolver);
     return this;
   }
 
-  public <T> TestTemplateInvocationContextBuilder addParameterResolver(
-      Class<T> parameterType, T value, String parameterName) {
-    ParameterResolver resolver =
-        new GenericParameterResolver<>(parameterType, value, parameterName);
+  public <T> TestTemplateInvocationContextBuilder addParameterResolver(Class<T> parameterType, T value, String parameterName) {
+    ParameterResolver resolver = new GenericParameterResolver<>(parameterType, value, parameterName);
     extensions.add(resolver);
     return this;
   }

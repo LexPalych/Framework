@@ -22,8 +22,7 @@ public final class ApiExtractingSteps extends StepWrapperSteps<ApiExtractingStep
   }
 
   @Step("Сохранение полей с соответствующими ключами {pathsAndKeys}")
-  public <T> ApiExtractingSteps saveBodyJsonPath(
-      Map<String, String> pathsAndKeys, Map<String, T> map) {
+  public <T> ApiExtractingSteps saveBodyJsonPath(Map<String, String> pathsAndKeys, Map<String, T> map) {
     Map<String, T> values =
         pathsAndKeys.entrySet().stream()
             .collect(
@@ -33,6 +32,7 @@ public final class ApiExtractingSteps extends StepWrapperSteps<ApiExtractingStep
                       String expression = entry.getKey();
                       return response.getBody().jsonPath().get(expression);
                     }));
+
     map.putAll(values);
     return this;
   }
@@ -45,11 +45,12 @@ public final class ApiExtractingSteps extends StepWrapperSteps<ApiExtractingStep
   }
 
   @Step("Сохранение заголовков как соответствующие им ключи {pathsAndKeys}")
-  public <T> ApiExtractingSteps saveHeader(
-      Map<String, String> headersAndKeys, Map<String, String> map) {
-    Map<String, String> values =
-        headersAndKeys.entrySet().stream()
+  public <T> ApiExtractingSteps saveHeader(Map<String, String> headersAndKeys, Map<String, String> map) {
+    Map<String, String> values = headersAndKeys
+            .entrySet()
+            .stream()
             .collect(toMap(Map.Entry::getValue, entry -> response.getHeader(entry.getKey())));
+
     map.putAll(values);
     return this;
   }
