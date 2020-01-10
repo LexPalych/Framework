@@ -185,8 +185,7 @@ final class ExampleValidation {
             char currentSymbol = expressionCharList.get(i);
             char nextSymbol = expressionCharList.get(i+1);
 
-            executableList.add(() ->
-                    assertFalse(isLetter(currentSymbol) && signList.contains(nextSymbol),
+            executableList.add(() -> assertFalse(isLetter(currentSymbol) && signList.contains(nextSymbol),
                             "Некорректный символ (" + nextSymbol + ") после имени функции")
             );
         }
@@ -206,8 +205,7 @@ final class ExampleValidation {
             char currentSymbol = expressionCharList.get(j);
             char nextSymbol = expressionCharList.get(j+1);
 
-            executableList.add(() ->
-                    assertFalse(signList.contains(currentSymbol) && signList.contains(nextSymbol),
+            executableList.add(() -> assertFalse(signList.contains(currentSymbol) && signList.contains(nextSymbol),
                             "Несколько знаков подряд начиная с позиции " + j)
             );
         }

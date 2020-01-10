@@ -6,6 +6,8 @@ import com.github.lexpalych.testapps.wolframalpha.examplecalculator.objectmodel.
 import java.util.List;
 import java.util.function.BiFunction;
 
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.element.ElementListCreator.getElementList;
+
 public final class ElementCalculator {
     /**
      * Выполняет расчёт примера (подпримера главного примера):
@@ -15,7 +17,7 @@ public final class ElementCalculator {
      * @return - возвращает значение примера (подпримера главного примера)
      */
     public static Double getExampleValue(final String subExample) {
-        List<Element> elementList = ElementListCreator.getElementList(subExample);
+        List<Element> elementList = getElementList(subExample);
         Double leftElement;
         Double rightElement;
         Double value;

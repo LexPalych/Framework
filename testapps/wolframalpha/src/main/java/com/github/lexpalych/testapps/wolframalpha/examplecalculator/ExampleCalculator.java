@@ -1,5 +1,6 @@
 package com.github.lexpalych.testapps.wolframalpha.examplecalculator;
 
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.ExampleValidation.assertExample;
 import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.element.ElementCalculator.getExampleValue;
 
 public final class ExampleCalculator {
@@ -10,7 +11,7 @@ public final class ExampleCalculator {
      * @return - возвращает итоговый результат вычислений
      */
     public static Double calculate(final String example) {
-        ExampleValidation.assertExample(example);
+        assertExample(example);
         return getExampleValue(example);
     }
 }

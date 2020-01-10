@@ -10,6 +10,8 @@ import java.util.function.Function;
 
 import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.element.ElementCreator.getElementCreator;
 import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.element.ElementListCreator.ElementListReplacer.replaceElementList;
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.objectmodel.Element.TypeElement.FACTORIAL;
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.objectmodel.Element.TypeElement.SIGN;
 
 final class ElementListCreator {
     /**
@@ -58,7 +60,7 @@ final class ElementListCreator {
          * @return - исправленный список элементов
          */
         private static List<Element> replaceFirstElement(final List<Element> elementList) {
-            if (elementList.get(0).getTypeElement() == Element.TypeElement.SIGN) {
+            if (elementList.get(0).getTypeElement() == SIGN) {
                 elementList.add(0, new ElementNumber("0"));
             }
 
@@ -77,7 +79,7 @@ final class ElementListCreator {
             int i = 0;
 
             while (i < elementList.size()) {
-                if (elementList.get(i).getTypeElement() == Element.TypeElement.FACTORIAL) {
+                if (elementList.get(i).getTypeElement() == FACTORIAL) {
                     String element = elementList.get(i-1).getElement() + elementList.get(i).getElement();
                     Double value = (Double) elementList.get(i-1).getValue();
 

@@ -6,6 +6,7 @@ import com.github.lexpalych.testapps.wolframalpha.examplecalculator.objectmodel.
 import java.util.List;
 import java.util.function.Function;
 
+import static com.github.lexpalych.testapps.wolframalpha.examplecalculator.objectmodel.Element.TypeElement.*;
 import static java.lang.Character.*;
 
 /**
@@ -56,19 +57,19 @@ final class ElementCreator {
         List<Character> signList = List.of('+', '-', '*', '/', '^');
 
         if (signList.contains(symbol)) {
-            return Element.TypeElement.SIGN;
+            return SIGN;
 
         } else if (isDigit(symbol) || symbol == '.') {
-            return Element.TypeElement.NUMBER;
+            return NUMBER;
 
         } else if (isLetter(symbol)) {
-            return Element.TypeElement.FUNCTION;
+            return FUNCTION;
 
         } else if (symbol == '(') {
-            return Element.TypeElement.BRACKET;
+            return BRACKET;
 
         } else if (symbol == '!') {
-            return Element.TypeElement.FACTORIAL;
+            return FACTORIAL;
 
         } else {
             throw new ExampleException("Неизестный сивол " + symbol);
