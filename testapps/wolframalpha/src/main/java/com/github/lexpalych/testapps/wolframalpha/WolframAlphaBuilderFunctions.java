@@ -22,27 +22,28 @@ public class WolframAlphaBuilderFunctions {
     private static final Config CONFIG = ConfigFactory.load();
 
     public static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE_UI =
-            builder -> builder
-                    .addParameterResolver(RequestSpecification.class, REQUEST_SPEC, "requestSpecification")
-
-                    .withDisplayNamePrefix("Проверка примера")
+            builder -> getPrepare(builder, "Проверка примера через UI", CONFIG.getString("wolframalpha.ui.url"))
                     .addExtension(new WebDriverPageObjectFactoryCallbacks(Set.of(WolframAlphaMain.class, WolframAlphaResult.class)))
-                    .addParameterResolver(String.class, CONFIG.getString("wolframalpha.ui.url"), "url")
-
-                    .addExtension(0, new AllureFishTaggingExtension())
-                    .addExtension(new AllureHideParametersExtension())
-                    .addExtension(new AllureEncodeStepNamesExtension("(?<=Добавление заголовка encoding=).*"))
-                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
-            .build();
+                    .build();
 
     public static final Function<TestTemplateInvocationContextBuilder, TestTemplateInvocationContext> PREPARE_API =
-            builder -> builder
-                    .withDisplayNamePrefix("Проверка примера через API")
-                    .addParameterResolver(String.class, CONFIG.getString("wolframalpha.api.url"), "url")
-
-                    .addExtension(0, new AllureFishTaggingExtension())
-                    .addExtension(new AllureHideParametersExtension())
-                    .addExtension(new AllureEncodeStepNamesExtension("(?<=Добавление заголовка encoding=).*"))
-                    .addExtension(new AllureConcurrentLoggerAttachmentsExtension())
+            builder -> getPrepare(builder, "Проверка примера через API", CONFIG.getString("wolframalpha.api.url"))
                     .build();
+
+    /**
+     * Навешивает на TestTemplateInvocationContextBuilder набор расширений
+     */
+    private static TestTemplateInvocationContextBuilder getPrepare(final TestTemplateInvocationContextBuilder builder,
+                                                                   final String displayName, final String url) {
+        return builder
+                .addParameterResolver(RequestSpecification.class, REQUEST_SPEC, "requestSpecification")
+
+                .withDisplayNamePrefix(displayName)
+                .addParameterResolver(String.class, url, "url")
+
+                .addExtension(0, new AllureFishTaggingExtension())
+                .addExtension(new AllureHideParametersExtension())
+                .addExtension(new AllureEncodeStepNamesExtension("(?<=Добавление заголовка encoding=).*"))
+                .addExtension(new AllureConcurrentLoggerAttachmentsExtension());
+    }
 }
