@@ -1,16 +1,13 @@
-import com.github.lexpalych.testapps.wolframalpha.WolframAlphaBracketExampleProvider;
-import com.github.lexpalych.testapps.wolframalpha.WolframAlphaFunctionExampleProvider;
-import com.github.lexpalych.testapps.wolframalpha.WolframAlphaVeryComplexExampleProvider;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
-import com.github.lexpalych.testapps.wolframalpha.WolframAlphaSimpleExampleProvider;
+import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaUiSimpleExampleProvider;
 import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaMain;
 import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaResult;
 
 class WolframAlphaUi {
     @TestTemplate
     @ExtendWith({
-            WolframAlphaSimpleExampleProvider.class/*,
+            WolframAlphaUiSimpleExampleProvider.class/*,
             WolframAlphaBracketExampleProvider.class,
             WolframAlphaFunctionExampleProvider.class,
             WolframAlphaVeryComplexExampleProvider.class*/
