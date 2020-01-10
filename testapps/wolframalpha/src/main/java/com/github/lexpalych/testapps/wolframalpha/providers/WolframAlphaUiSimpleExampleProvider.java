@@ -24,15 +24,6 @@ public class WolframAlphaUiSimpleExampleProvider implements TestTemplateInvocati
         return testClassName.equals("WolframAlphaUi") && testMethodName.equals("checkCalculator");
     }
 
-//    @Override
-//    public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-//        return getExampleList("simple")
-//                .stream()
-//                .map(example -> getTestTemplateInvocationContextBuilder(example, "Простые примеры"))
-//                .map(PREPARE_UI);
-//
-//    }
-
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
         return new SimpleExample()
