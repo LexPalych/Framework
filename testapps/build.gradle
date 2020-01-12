@@ -43,11 +43,11 @@ subprojects {
         implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
         implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 
-        implementation project (":allure-junit5-extensions")
-        implementation project (":allure-rest-assured")
-        implementation project (":allure-steps")
-        implementation project (":allure-webdriver")
-        implementation project (":junit5-extensions")
+        implementation project (":extensions:allure-junit5-extensions")
+        implementation project (":extensions:allure-rest-assured")
+        implementation project (":extensions:allure-steps")
+        implementation project (":extensions:allure-webdriver")
+        implementation project (":extensions:junit5-extensions")
     }
 
     //Параметр для javac, чтобы получать реальные имена переменных, а не синтетические arg0, arg1 и т.д.
@@ -64,7 +64,7 @@ subprojects {
 
                     String driverReference ='\\resources\\main\\drivers'
                     String fromPath = getRootProject()
-                                .findProject(":${webDriverModuleName}")
+                                .findProject("${webDriverModuleName}")
                                 .getBuildDir()
                                 .getAbsolutePath() + driverReference
 

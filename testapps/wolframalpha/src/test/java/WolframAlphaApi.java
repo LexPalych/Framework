@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiFunctionExampleProvider;
 import com.github.lexpalych.testapps.wolframalpha.providers.WolframAlphaApiSimpleExampleProvider;
 
-import static com.github.lexpalych.allure.rest.assured.ApiRequestSteps.apiRequest;
+import static com.github.lexpalych.extensions.allure.rest.assured.ApiRequestSteps.apiRequest;
 import static org.apache.http.HttpStatus.SC_OK;
 
 class WolframAlphaApi {

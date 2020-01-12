@@ -1,13 +1,14 @@
 rootProject.name = 'com.github.lexpalych'
 
-include("allure-junit5-extensions")
-include("allure-webdriver")
-include("allure-steps")
-include("allure-rest-assured")
-include("junit5-extensions")
+include("extensions")
+include("extensions:allure-junit5-extensions")
+include("extensions:allure-webdriver")
+include("extensions:allure-steps")
+include("extensions:allure-rest-assured")
+include("extensions:junit5-extensions")
 
-include ("testapps")
-include ("testapps:wolframalpha")
+include("testapps")
+include("testapps:wolframalpha")
 
 include("tools")
 include("tools:json-to-java")

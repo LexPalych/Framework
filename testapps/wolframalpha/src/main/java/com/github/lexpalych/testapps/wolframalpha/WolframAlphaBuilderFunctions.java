@@ -1,10 +1,10 @@
 package com.github.lexpalych.testapps.wolframalpha;
 
-import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
-import com.github.lexpalych.junit5.extensions.allure.AllureConcurrentLoggerAttachmentsExtension;
-import com.github.lexpalych.junit5.extensions.allure.AllureEncodeStepNamesExtension;
-import com.github.lexpalych.junit5.extensions.allure.AllureFishTaggingExtension;
-import com.github.lexpalych.junit5.extensions.allure.AllureHideParametersExtension;
+import com.github.lexpalych.extensions.junit5.extensions.TestTemplateInvocationContextBuilder;
+import com.github.lexpalych.extensions.junit5.extensions.allure.AllureConcurrentLoggerAttachmentsExtension;
+import com.github.lexpalych.extensions.junit5.extensions.allure.AllureEncodeStepNamesExtension;
+import com.github.lexpalych.extensions.junit5.extensions.allure.AllureFishTaggingExtension;
+import com.github.lexpalych.extensions.junit5.extensions.allure.AllureHideParametersExtension;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import io.restassured.specification.RequestSpecification;

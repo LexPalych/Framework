@@ -1,0 +1,14 @@
+description = 'Fluent API wrapper for Rest Assured that adds Allure steps'
+
+dependencies {
+    implementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    implementation "io.qameta.allure:allure-junit5:${allureJunitVersion}"
+    implementation "io.rest-assured:rest-assured:${restAssuredVersion}"
+    implementation "io.rest-assured:json-path:${restAssuredVersion}"
+    implementation "io.rest-assured:xml-path:${restAssuredVersion}"
+    implementation project(":extensions:allure-steps")
+
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    implementation project(":extensions:allure-junit5-extensions")
+}

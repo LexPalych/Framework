@@ -1,7 +1,7 @@
 package com.github.lexpalych.testapps.wolframalpha.objectmodel;
 
-import com.github.lexpalych.allure.webdriver.WebDriverPageObject;
-import com.github.lexpalych.junit5.allure.steps.steprepositories.FieldStepRepository;
+import com.github.lexpalych.extensions.allure.webdriver.WebDriverPageObject;
+import com.github.lexpalych.extensions.junit5.allure.steps.steprepositories.FieldStepRepository;
 import io.qameta.allure.Step;
 
 import static java.lang.Double.parseDouble;
