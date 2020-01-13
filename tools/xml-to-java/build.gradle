@@ -1,68 +1,68 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-}
-
-plugins {
-    id "java"
-}
-
-group 'com.github.lexpalych.tools'
-version '1.0'
-
-project.ext {
-    jaxbTargetDir = file("src/main/java")
-    jaxbXjcVersion = "2.3.2"
-    jaxbCoreVersion = "2.3.0"
-    jaxbApiVersion = "2.3.1"
-}
-
-configurations {
-    xsd2java
-}
-
-dependencies {
-    xsd2java "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVersion}"
-    xsd2java "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
-    xsd2java "com.sun.xml.bind:jaxb-impl:${jaxbXjcVersion}"
-    xsd2java "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
-    xsd2java "com.migesok:jaxb-java-time-addapters:1.1.3"
-
-    implementation "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVersion}"
-    implementation "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
-    implementation "com.sun.xml.bind:jaxb-impl:${jaxbXjcVersion}"
-    implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
-    implementation "com.migesok:jaxb-java-time-addapters:1.1.3"
-}
-
-task xsd2java() {
-    doLast {
-        jaxbTargetDir.mkdirs()
-
-        ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xsd2java.asPath)
-        ant.jaxbTargetDir = jaxbTargetDir
-
-        ant.xjc(
-                testdir: "${jaxbTargetDir}",
-                packege: "com.github.lexpalych.tools.xml-to-java.request",
-                schema: "src/main/resources/Request.xsd",
-                bining: "${projectDir}/src/main/resources/binding.xml"
-        ) {
-            arg(value: "-extensions")
-            arg(value: "-Xfluent-builder")
-        }
-
-        ant.xjc(
-                testdir: "${jaxbTargetDir}",
-                packege: "com.github.lexpalych.tools.xml-to-java.response",
-                schema: "src/main/resources/Response.xsd",
-                bining: "${projectDir}/src/main/resources/binding.xml"
-        ) {
-            arg(value: "-extensions")
-            arg(value: "-Xfluent-builder")
-        }
-    }
-}
-
-compileJava.dependsOn xsd2java
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//    }
+//}
+//
+//plugins {
+//    id "java"
+//}
+//
+//group 'com.github.lexpalych.tools'
+//version '1.0'
+//
+//project.ext {
+//    jaxbTargetDir = file("src/main/java")
+//    jaxbXjcVersion = "2.3.2"
+//    jaxbCoreVersion = "2.3.0"
+//    jaxbApiVersion = "2.3.1"
+//}
+//
+//configurations {
+//    xsd2java
+//}
+//
+//dependencies {
+//    xsd2java "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVersion}"
+//    xsd2java "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
+//    xsd2java "com.sun.xml.bind:jaxb-impl:${jaxbXjcVersion}"
+//    xsd2java "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+//    xsd2java "com.migesok:jaxb-java-time-addapters:1.1.3"
+//
+//    implementation "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVersion}"
+//    implementation "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
+//    implementation "com.sun.xml.bind:jaxb-impl:${jaxbXjcVersion}"
+//    implementation "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+//    implementation "com.migesok:jaxb-java-time-addapters:1.1.3"
+//}
+//
+//task xsd2java() {
+//    doLast {
+//        jaxbTargetDir.mkdirs()
+//
+//        ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xsd2java.asPath)
+//        ant.jaxbTargetDir = jaxbTargetDir
+//
+//        ant.xjc(
+//                testdir: "${jaxbTargetDir}",
+//                packege: "com.github.lexpalych.tools.xml-to-java.request",
+//                schema: "src/main/resources/Request.xsd",
+//                bining: "${projectDir}/src/main/resources/binding.xml"
+//        ) {
+//            arg(value: "-extensions")
+//            arg(value: "-Xfluent-builder")
+//        }
+//
+//        ant.xjc(
+//                testdir: "${jaxbTargetDir}",
+//                packege: "com.github.lexpalych.tools.xml-to-java.response",
+//                schema: "src/main/resources/Response.xsd",
+//                bining: "${projectDir}/src/main/resources/binding.xml"
+//        ) {
+//            arg(value: "-extensions")
+//            arg(value: "-Xfluent-builder")
+//        }
+//    }
+//}
+//
+//compileJava.dependsOn xsd2java
