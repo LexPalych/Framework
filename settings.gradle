@@ -12,3 +12,4 @@ include("testapps:wolframalpha")
 
 include("tools")
 include("tools:json-to-java")
+include("tools:xml-to-java")
