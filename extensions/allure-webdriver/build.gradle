@@ -1,0 +1,10 @@
+description = 'Extensions and page object implementation to use with Allure'
+
+dependencies {
+    implementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    implementation "io.qameta.allure:allure-junit5:${allureJunitVersion}"
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    implementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    implementation project(":extensions:allure-steps")
+}

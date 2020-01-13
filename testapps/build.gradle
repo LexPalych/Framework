@@ -1,7 +1,35 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.8.1"
+    }
+}
+
+plugins {
+    id 'io.qameta.allure' version '2.5'
+}
+
 group 'com.github.lexpalych'
 version '1.0'
 
 subprojects {
+    apply plugin: 'io.qameta.allure'
+
+    allure {
+        autoconfigure = true
+
+        version = '2.13.1'
+
+        useJUnit5 {
+            version = '2.13.1'
+        }
+    }
+
     dependencies {
         implementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
         implementation "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
@@ -15,16 +43,17 @@ subprojects {
         implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
         implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 
-        implementation project (":allure-junit5-extensions")
-        implementation project (":allure-rest-assured")
-        implementation project (":allure-steps")
-        implementation project (":allure-webdriver")
-        implementation project (":junit5-extensions")
+        implementation project (":extensions:allure-junit5-extensions")
+        implementation project (":extensions:allure-rest-assured")
+        implementation project (":extensions:allure-steps")
+        implementation project (":extensions:allure-webdriver")
+        implementation project (":extensions:junit5-extensions")
     }
 
     //Параметр для javac, чтобы получать реальные имена переменных, а не синтетические arg0, arg1 и т.д.
     compileTestJava.options.compilerArgs = ['-parameters']
 
+    //Если поект имеет проперти uitests, то в его папку ресурсов копируются исполняемые файлы WebDriver
     test {
         doFirst {
             if (project.hasProperty('uitests')) {
@@ -35,7 +64,7 @@ subprojects {
 
                     String driverReference ='\\resources\\main\\drivers'
                     String fromPath = getRootProject()
-                                .findProject(":${webDriverModuleName}")
+                                .findProject("${webDriverModuleName}")
                                 .getBuildDir()
                                 .getAbsolutePath() + driverReference
 
@@ -52,6 +81,19 @@ subprojects {
             }
         }
 
+        //Многопоточный запуск тестов
+        test {
+            useJUnitPlatform()
+
+            //По умолчанию тесты запускаются многопоточно (true)
+            systemProperties['junit.jupiter.execution.parallel.enabled'] = true
+            systemProperties['junit.jupiter.execution.parallel.mode.default'] = 'concurrent'
+
+            //Количесто потоков равно количесту ядер
+            maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+        }
+
+        //Конфиг логирования
         println 'Устанока проперти конфигурации логирования'
         systemProperties["log4j2.configurationFactory"] = "${configurationFactoryPath}"
         systemProperties["log4j2.rootLogger.level"] = "info"

@@ -1,6 +1,6 @@
 package com.github.lexpalych.testapps.wolframalpha;
 
-import com.github.lexpalych.junit5.extensions.allure.LoggerStreamProvider;
+import com.github.lexpalych.extensions.junit5.extensions.allure.LoggerStreamProvider;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;

@@ -1,7 +1,7 @@
 package com.github.lexpalych.testapps.wolframalpha.providers;
 
-import com.github.lexpalych.allure.webdriver.WebDriverPageObjectFactoryCallbacks;
-import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
+import com.github.lexpalych.extensions.allure.webdriver.WebDriverPageObjectFactoryCallbacks;
+import com.github.lexpalych.extensions.junit5.extensions.TestTemplateInvocationContextBuilder;
 import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaMain;
 import com.github.lexpalych.testapps.wolframalpha.objectmodel.WolframAlphaResult;
 import org.junit.jupiter.api.extension.ExtensionContext;

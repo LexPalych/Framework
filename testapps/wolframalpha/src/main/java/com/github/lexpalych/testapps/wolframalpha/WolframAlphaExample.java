@@ -1,7 +1,7 @@
 package com.github.lexpalych.testapps.wolframalpha;
 
-import com.github.lexpalych.junit5.extensions.TestTemplateInvocationContextBuilder;
-import com.github.lexpalych.junit5.extensions.allure.AllureLabelExtension;
+import com.github.lexpalych.extensions.junit5.extensions.TestTemplateInvocationContextBuilder;
+import com.github.lexpalych.extensions.junit5.extensions.allure.AllureLabelExtension;
 import com.typesafe.config.ConfigFactory;
 
 import java.util.List;
